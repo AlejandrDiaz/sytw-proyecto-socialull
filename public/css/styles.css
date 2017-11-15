@@ -11,11 +11,17 @@ html, body {
    font-size:13px;
 }
 
+
+.iconou {
+    width: 85%;
+}
+
 a {
   color:#222222;
 }
 
 a:hover {
+    color: rgb(90, 33, 90); /* color del boton de inicio al pasar por encima*/
   text-decoration:none;
 }
 
@@ -74,7 +80,8 @@ hr {
 
 .navbar-blue {
     border-width:0;
-	background-color:#3B5999;
+    background-color: rgb(122, 59, 122);
+	/*background-color:#3B5999;*/
     color:#ffffff;
     font-family:arial,sans-serif;
     top:0;
@@ -84,14 +91,17 @@ hr {
 }
 
 .navbar-blue li > a,.navbar-toggle  {
+    
    color:#efefef;
 }
 
-.navbar-blue .dropdown-menu li a {color:#2A4888;}
+
+.navbar-blue .dropdown-menu li a {color:#000000;}
 .navbar-blue .dropdown-menu li > a {padding-left:30px;}
 
 .navbar-blue li>a:hover, .navbar-blue li>a:focus, .navbar-blue .open, .navbar-blue .open>a, .navbar-blue .open>a:hover, .navbar-blue .open>a:focus {
-   background-color:#2A4888;
+   /*background-color:#2A4888;*/
+   background-color: rgb(90, 33, 90); /*color al pasar por encima navbar*/
    color:#fff;
 }
 
@@ -118,14 +128,16 @@ hr {
     padding-left:5px;
 }
 #sidebar .nav li>a:hover {
-    background-color:#393939;
+    /*background-color:#393939;*/
+    background-color: rgb(90, 33, 90);
 }
 
 .logo {
   display:block;
   padding:3px;
   background-color:#fff;
-  color:#3B5999;
+  /*color:#3B5999;*/
+  color: rgb(122, 59, 122);
   height:28px;
   width:28px;
   margin:9px;
@@ -170,8 +182,13 @@ h1,h2,h3 {
     color:#666666;
     text-shadow:0 0 1px rgba(0,0,0,.3);
 }
+
 .form-control {
 	
+}
+
+.form-control:focus {
+	border-color: rgb(122, 59, 122);
 }
 
 .panel textarea, .well textarea, textarea.form-control
@@ -250,7 +267,8 @@ small.text-muted {
   }
 
   .navbar-blue {
-	background-color:#3B5999;
+	/*background-color:#3B5999*/
+	background-color: rgb(122, 59, 122);
     top:0;
     width:100%;
     position:relative;
@@ -290,4 +308,14 @@ small.text-muted {
 
 .nombre {
     font-weight: bold;
+}
+
+.btn-primary {
+    background-color: rgb(122, 59, 122);
+    border-color: rgb(122, 62, 122);
+}
+
+.btn-primary:hover {
+    background-color: rgb(90, 33, 90);
+    border-color: rgb(90, 33, 90);
 }
