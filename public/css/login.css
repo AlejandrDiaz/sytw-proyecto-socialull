@@ -1,0 +1,204 @@
+html {
+	position: relative;
+	min-height: 100%;
+	/*height: 100%;*/
+}
+
+body {
+	margin: 0;
+	margin-bottom: 10%;
+	background-color:#e9eaed;
+	/*height: 100%;*/
+	/*background: url('images/fondo-login.jpg') no-repeat center center fixed;*/
+}
+
+/*.caja{
+	height: 100%;
+}*/
+
+
+.titulo{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: rgb(122, 59, 122);
+	/*background-color:#e9eaed;*/
+}
+
+a img {  
+	display:flex;
+	margin:0 auto;
+	width: 25%;
+}
+
+
+
+#loginbox {
+	margin-top: 5em;
+}
+
+
+#signupbox {
+	margin-top: 5em;
+	/*display:none*/
+}
+
+#signup {
+	font-weight: bold; 
+	color: #000000;
+	
+}
+
+
+.form-group {
+	margin-bottom: 0.5em;
+}
+
+@media (min-width: 768px) {
+    .omb_row-sm-offset-3 div:first-child[class*="col-"] {
+        margin-left: 25%;
+    }
+    
+}
+
+.col-xs-10 {
+    margin-left: 8.33333333%;
+}
+
+.panel-info {
+	border-color: rgb(122, 62, 122);
+}
+
+.panel-info>.panel-heading {
+	color: #ffffff;
+	background-color: rgb(122, 59, 122);
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+a:hover {
+	color:#D1BFBF;
+}
+
+a:visited {
+	color: #ffffff;
+    text-decoration: underline;
+}
+
+.btn-success {
+    background-color: rgb(122, 59, 122);
+    border-color: rgb(122, 62, 122);
+}
+
+.btn-success:hover {
+    background-color: rgb(90, 33, 90);
+    border-color: rgb(90, 33, 90);
+}
+
+.btn-info {
+    background-color: rgb(122, 59, 122);
+    border-color: rgb(122, 62, 122);
+}
+
+.btn-info:hover {
+    background-color: rgb(90, 33, 90);
+    border-color: rgb(90, 33, 90);
+}
+
+.input-group {
+	margin-bottom: 25px;
+}
+
+
+.row{
+	background-color: rgb(122, 59, 122);
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+
+h3 img {
+	width: 6em;
+}
+
+footer {
+	background-color: rgb(122, 59, 122);
+	position: absolute;
+  	bottom: 0;
+  	width: 100%;
+  	height: 10%;
+}
+
+footer .col-sm-12{
+	background-color: rgb(122, 59, 122);
+}
+
+
+.footer-distributed {
+	text-align: center;
+}
+
+.footer-distributed a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.footer-distributed a:hover {
+	color:#D1BFBF;
+}
+
+.footer-distributed a:visited {
+	color: #ffffff;
+    text-decoration: underline;
+}
+
+
+.fa-envelope{
+	font-size: 1.25em;
+	line-height: 38px;
+}
+
+
+.footer-distributed p {
+	margin-top: 1em;
+	display:block;
+	font-weight: normal;
+	font-size:14px;
+	line-height:2;
+}
+
+
+
+
+.footer-distributed .footer-icons{
+	margin-top: 1em;
+}
+
+.footer-distributed .footer-icons a{
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	cursor: pointer;
+	background-color:  #33383b;
+	border-radius: 2px;
+
+	font-size: 20px;
+	color: #ffffff;
+	text-align: center;
+	line-height: 35px;
+
+	margin-right: 3px;
+	margin-bottom: 5px;
+}
+
+/* If you don't want the footer to be responsive, remove these media queries */
+
+@media (max-width: 880px) {
+
+	.footer-distributed{
+		font: bold 14px sans-serif;
+	}
+}
+
