@@ -31,11 +31,6 @@
             
         <div class="titulo">
             <a href="#"><img src="https://images.cooltext.com/5049677.png" alt="SocialULL"/></a>
-            <!-- 
-            https://es.cooltext.com/
-            <img src="https://images.cooltext.com/5047543.png" alt="SocialULL" />
-            -->
-            
         </div>
         
         
@@ -47,72 +42,62 @@
                     <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="/login">Sign In</a></div>
                 </div>  
                 <div class="panel-body" >
-                    <!--
-                    <form id="signupform" class="form-horizontal" role="form" action="/signup" method="post">
-                        
-                        <div id="signupalert" style="display:none" class="alert alert-danger">
-                            <p>Error:</p>
-                            <span></span>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email" class="col-md-3 control-label">Email</label>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" name="email" id="email" placeholder="Email">
-                            </div>
-                        </div>
-                        
-                        
-                        
-                        <!--
-                        <div class="form-group">
-                            <label for="surname" class="col-md-3 control-label">Apellidos</label>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" name="surname" id="surname" placeholder="Apellidos">
-                            </div>
-                        </div>
+                    
+                    <form class="form-horizontal" name="registro" onsubmit="return validar_clave()" action="/signup" method="post">
                         
                         <div class="form-group">
                             <label for="name" class="col-md-3 control-label">Nombre</label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Nombre">
+                                <input required type="text" class="form-control" name="name" id="name">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="surname" class="col-md-3 control-label">Apellidos</label>
+                            <div class="col-md-9">
+                                <input required type="text" class="form-control" name="surname" id="surname">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edad" class="col-md-3 control-label">Edad</label>
+                            <div class="col-md-9">
+                                <input required type="number" class="form-control" name="edad" id="edad">
+                            </div>
+                        </div>
+                        
+                        <!-- campo genero
+                        <div class="form-group">
+                            <label for="genero" class="col-md-3 control-label">Genero</label>
+                            <div class="col-md-9">
+                                <div class="col-md-6">
+                                    <input type="radio" class="form-control" name="genero">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="radio" class="form-control" name="genero">
+                                </div>
                             </div>
                         </div>
                         -->
-                        <!--
-                        <div class="form-group">
-                            <label for="password" class="col-md-3 control-label">Password</label>
-                            <div class="col-md-9">
-                                <input type="password" class="form-control" name="passwordd" id="password" placeholder="Password">
-                            </div>
-                        </div>
-                        
-                        
-                        <div class="form-group">
-                            <!-- Button --> 
-                            <!--
-                            <div class="col-md-offset-3 col-md-9">
-                                <button type="submit" class="btn btn-info" value="Submit">Sign Up</button>
-                            </div>
-                        </div>
-                        
-                    </form>
-                    -->
-                    
-                    <form class="form-horizontal" action="/signup" method="post">
-                        
                         
                         <div class="form-group">
                             <label for="email" class="col-md-3 control-label">Email</label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="email">
+                                <input required type="text" class="form-control" name="email" id="email">
                             </div>
                         </div>
                         
                         <div class="form-group">
                             <label for="password" class="col-md-3 control-label">Password</label>    
                             <div class="col-md-9">
-                                <input type="password" class="form-control" name="password" />
+                                <input required type="password" class="form-control" name="password" id="password" />
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password2" class="col-md-3 control-label">Repetir Password</label>    
+                            <div class="col-md-9">
+                                <input required type="password" class="form-control" name="password2" id="password2"/>
                             </div>
                         </div>
    
@@ -143,7 +128,7 @@
 		        
 		        <div class="col-md-4 col-sm-12">
 		            
-				    <p><i class="fa fa-envelope"></i> <a href="mailto:support@company.com">support@company.com</a></p>
+				    <p><i class="fa fa-envelope"></i> <a href="mailto:support-socialull@gmail.com">support-socialull@gmail.com</a></p>
 		        
 		        </div>
                 

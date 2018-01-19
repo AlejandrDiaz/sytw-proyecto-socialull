@@ -5,10 +5,15 @@ var bcrypt = require('bcrypt-nodejs');
 var userSchema = mongoose.Schema({
   local: {
     name: String,
+    surname: String,
+    edad: Number,
     email: String,
     password: String
   }
 });
+
+//friends: [{type: Schema.Types.ObjectId ,ref: 'User'}]     //Personas que son amigos del usuario
+//se puede agregar algún tipo de estado de solicitud, algo como solicitud pendiente,aceptado, ...
 
 userSchema.methods.generateHash = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);

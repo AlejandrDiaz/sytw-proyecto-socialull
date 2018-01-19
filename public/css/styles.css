@@ -49,7 +49,6 @@ hr {
 .column {
     height: 100%;
     overflow: auto;
-    *zoom:1;
 }
 
 .column .padding {
@@ -233,6 +232,11 @@ h1,h2,h3 {
 	background-color:#f2f2f2;
     font-weight:800;
     font-size:12px;
+}
+
+
+.modal-footer {
+    text-align: left;
 }
 
 .modal-footer i, .well i {
