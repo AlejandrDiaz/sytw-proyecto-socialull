@@ -13,7 +13,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="shortcut icon" type="image/x-icon" href="images/U.ico" />
+        
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
+
+        <link rel="shortcut icon" type="image/x-icon" href="images/U.ico"/>
         
         <link href="css/bootstrap.min.css" rel="stylesheet">
         
@@ -79,6 +83,7 @@
                                         <ul class="dropdown-menu">
                                             <li><a href="">Ajustes</a></li>
                                             <li><a href="">Acerca</a></li>
+                                            <li><a href="/logout">Logout</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -101,7 +106,7 @@
                                     
                                         <div class="list-group">
                                             <a href="#" class="list-group-item list-group-item-action">Perfil</a>
-                                            <a href="#" class="list-group-item list-group-item-action">Amigos</a>
+                                            <a href="/amigos" class="list-group-item list-group-item-action">Amigos</a>
                                             <a href="#" class="list-group-item list-group-item-action">Grupos</a>
                                             <a href="#" class="list-group-item list-group-item-action">Chat</a>
                                         </div>
@@ -153,43 +158,50 @@
                                     <div class="col-sm-9">
                                         
                                         
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="nombre">Diego Cabrera</h4>
-                                            </div>
-                                            
-                                            <div class="panel-body">
-                                                <p>Disfrutando un poquito de la nieve &#60;3</p>
+                                        <% for(var i = 0; i < post.length; i++) { %>    <!-- post.length cantidad de post del usuario -->
                                                 
-                                                <div class="panel-thumbnail">
-                                                    <img src="images/ejemplo-nieve.jpg" class="img-responsive">
+                                            <% if(user.id == post[i].owner) { %> 
+                                                <% var nombre_creador = user.local.name %>
+                                                <% var apellido_creador = user.local.surname %>
+                                            <% } %>
+                                            
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="nombre">
+                                                        <%= nombre_creador %>
+                                                        <%= apellido_creador %>
+                                                        
+                                                    </h4>
                                                 </div>
                                                 
-                                                
-                                                <!--
-                                                <p>
-                                                    <img src="https://lh6.googleusercontent.com/-5cTTMHjjnzs/AAAAAAAAAAI/AAAAAAAAAFk/vgza68M4p2s/s28-c-k-no/photo.jpg" width="28px" height="28px">
-                                                    <img src="https://lh4.googleusercontent.com/-6aFMDiaLg5M/AAAAAAAAAAI/AAAAAAAABdM/XjnG8z60Ug0/s28-c-k-no/photo.jpg" width="28px" height="28px">
-                                                    <img src="https://lh4.googleusercontent.com/-9Yw2jNffJlE/AAAAAAAAAAI/AAAAAAAAAAA/u3WcFXvK-g8/s28-c-k-no/photo.jpg" width="28px" height="28px">
-                                                </p>
-                                                -->
-                                            </div>
+                                                <div class="panel-body">
+                                                    <!--<p>Disfrutando un poquito de la nieve &#60;3</p>-->
+                                                    <p><%= post[i].estado %></p>
+                                                    
+                                                    <% if(post[i].file) { %>
+                                                        <div class="panel-thumbnail">
+                                                            <img class="img-responsive" src=<%=post[i].file%>> 
+                                                        </div>
+                                                    <% } %>
                                             
-                                            <div class="panel-footer">
-                                                <div class="row">
-                                                    <div class="col-sm-6 text-left">
-                                                        <button type="button" class="btn btn-primary">Like <i class="fa fa-thumbs-o-up"></i></button>
-                                                    </div>
-                                                    <div class="col-sm-6 text-right">
-                                                        <p>85 Like <i class="fa fa-thumbs-o-up"></i></p>
-                                                    </div>
                                                 </div>
-                                
+                                                
+                                                <div class="panel-footer">
+                                                    <div class="row">
+                                                        <div class="col-sm-6 text-left">
+                                                            <button type="button" class="btn btn-primary">Like <i class="fa fa-thumbs-o-up"></i></button>
+                                                            <!--<button type="button" class="btn btn-primary" onclick="give_like()">Like <i class="fa fa-thumbs-o-up"></i></button>-->
+                                                        </div>
+                                                        <div class="col-sm-6 text-right">
+                                                            <p>85 Like <i class="fa fa-thumbs-o-up"></i></p>
+                                                            <!--<p> %post[i].likes%> <i class="fa fa-thumbs-o-up"></i><p> -->
+                                                        </div>
+                                                    </div>
+                                    
+                                                </div>
+                                                
                                             </div>
-                                            
-                                        </div>
-                                        
-                                        
+                                        <% } %>
                                         
                                         <!--
                                         <div class="well"> 
@@ -256,21 +268,46 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        Update Status
+                        Nuevo estado
                     </div>
-                    <div class="modal-body">
-                        <form class="form center-block">
+                    
+                    <form class="form center-block" method="POST" action="/post" enctype="multipart/form-data">
+                        <div class="modal-body">
+                                
                             <div class="form-group">
-                                <textarea class="form-control input-lg" autofocus="" placeholder="What do you want to share?"></textarea>
+                                <textarea type="text" class="form-control input-lg" name="estado" id="estado" placeholder="CAMBIAR TEXTO........"></textarea>
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <div>
-                            <button class="btn btn-primary btn-sm" data-dismiss="modal" aria-hidden="true">Post</button>
-                            <ul class="pull-left list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
-                        </div>  	
-                    </div>
+                                
+                            
+                        </div>
+                        <div class="modal-footer">
+                            
+                            <div class="row justify-content-between">
+                                
+                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                    <span class="btn btn-default btn-file">
+                                        <span>
+                                            <i class="fa fa-camera"></i>
+                                            Foto/Video
+                                        </span>
+                                        <input type="file" name="file" accept="video/*,  video/x-m4v, video/webm, video/x-ms-wmv, video/x-msvideo, video/3gpp, video/flv, video/x-flv, video/mp4, video/quicktime, video/mpeg, video/ogv, .ts, .mkv, image/*"/>
+                                    </span>
+                                    <span class="fileinput-filename"></span>
+                                    
+                                </div>
+                                
+                                <!--
+                                <label class="btn btn-default btn-file">
+                                    <i class="fa fa-camera"></i>
+                                    Foto/Video <input type="file" style="display: none;">
+                                </label>
+                                -->
+                                
+                                <button type="submit" class="btn btn-primary btn-sm" aria-hidden="true">Post</button>
+                                
+                            </div>  	
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -278,7 +315,11 @@
         
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <script src="js/scripts.js"></script>
+        
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+        
+        <script src="js/scripts.js"></script>   <!-- no existe? -->
         
     </body>
 </html>
