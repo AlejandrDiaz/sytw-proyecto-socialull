@@ -12,6 +12,9 @@ SocialULL pretende ser una red social enfocada a los estudiantes de la Universid
     ./mongo &
     node serve.js
 ```
+## App Desplegada en el IaaS
+
+[SocialULL](http://10.6.128.109:8080/login)
 
 ## Guía de uso
 Para acceder a la plataforma primero habrá que loguearse, o crear una nueva cuenta en caso de no tener una, rellenando los campos Nombre, Apellidos, Edad, Email y Contraseña, la cual requiere confirmación, más de 6 caracteres y que no contenga espacios en blanco.
