@@ -323,3 +323,25 @@ small.text-muted {
     background-color: rgb(90, 33, 90);
     border-color: rgb(90, 33, 90);
 }
+
+video {
+    width: 100%;
+    height: auto;
+}
+
+#deleteModal p{
+    margin-left: 1em;
+    margin-top: 1em;
+}
+
+.panel-heading .col-sm-10 {
+    padding-left: 0px;
+}
+
+.panel-heading .col-sm-2 {
+    padding-left: 0px;
+}
+
+.col-sm-2 img{
+    max-height: 50px;
+}

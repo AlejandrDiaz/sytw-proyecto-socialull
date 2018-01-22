@@ -1,4 +1,4 @@
-/*function valida_login() {
+function valida_login() {
     
     var email = document.getElementById("email").value;
     var password = document.getElementById("pw").value;
@@ -40,12 +40,11 @@ function validar_clave() {
             return false;
         }
         else {
-            alert('Contraeña correcta');
             return true;
         }
     }
 };
-*/
+
 
 var form = document.querySelector('form');
 form.addEventListener( 'invalid',function(event){
