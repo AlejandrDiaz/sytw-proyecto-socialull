@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    
+    
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        
+        <title>SocialULL</title>
+        
+        <meta name="generator" content="Bootply" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
+        
+        <link rel="shortcut icon" type="image/x-icon" href="images/U.ico" />
+        
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        
+        <!--[if lt IE 9]>
+        <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        
+        <link href="css/styles.css" rel="stylesheet">
+        
+        <link href="css/amigos.css" rel="stylesheet">
+        
+    </head>
+    
+    
+    <body>
+        
+        <div class="wrapper">
+            
+            <div class="box">
+                
+                <div class="row row-offcanvas row-offcanvas-left">
+                    
+                    
+                    <!-- main right col -->
+                    <div class="column col-sm-12 col-xs-11" id="main">
+                        
+                        <!-- top nav -->
+                        <div class="navbar navbar-blue navbar-static-top">  
+                            <div class="navbar-header">
+                                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <span class="sr-only">Toggle</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <a href="/inicio" class="navbar-brand logo"><img src="images/U.png" class="iconou"></img></a>
+                            </div>
+                            
+                            <nav class="collapse navbar-collapse" role="navigation">
+                                
+                                <form class="navbar-form navbar-left" method="POST" action="/buscar" >
+                                    <div class="input-group input-group-sm" style="max-width:360px;">
+                                        <input type="text" class="form-control" placeholder="Buscar" name="search_data" id="search_data">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                                
+                                <ul class="nav navbar-nav">
+                                    <li>
+                                        <a href="/inicio"><i class="fa fa-home"></i> Inicio</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> <i class="fa fa-comments"></i> Chat </a>
+                                    </li>
+                                </ul>
+                                
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="/perfil">Ajustes</a></li>
+                                            <li><a href="">Acerca</a></li>
+                                            <li><a href="/logout">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                
+                            </nav>
+                            
+                        </div>
+                        <!-- /top nav -->
+                        
+                        <div class="padding">
+                            <div class="full col-sm-9">
+                            
+                                <!-- content -->                      
+                                <div class="row">
+                                    
+                                    <!-- main col left --> 
+                                    <div class="col-sm-3">
+                                        <div class="list-group">
+                                            <a href="/perfil" class="list-group-item list-group-item-action">Perfil</a>
+                                            <a href="/amigos" class="list-group-item list-group-item-action">Amigos</a>
+                                            <a href="#" class="list-group-item list-group-item-action">Grupos</a>
+                                            <a href="#" class="list-group-item list-group-item-action">Chat</a>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- main col right -->
+                                    <div class="col-sm-9">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="nombre">Búsqueda de usuarios</h4>
+                                            </div>
+                                            
+                                            <div class="panel-body">
+                                                
+                                                <div class="row">
+                                                    <p>Número de usuarios: <%= usuario.length %></p>
+                                                    <% for(var i = 0; i < usuario.length; i++) { %>
+                                                        <% if(usuario[i]) { %>
+                                                            <div class="col-sm-4 col-md-4">
+                                                                
+                                                                <div class="card">
+                                                                    <% if(usuario[i].local.avatar) { %>
+                                                        			    <img class="img-responsive img-portfolio img-hover" src="<%= usuario[i].local.avatar %>">
+                                                        			<% } else { %> 
+                                                        			    <img class="img-responsive img-portfolio img-hover" src="images/avatar.png">
+                                                        			<% }%>
+                                                                    <div class="card-block">
+                                                                        <h4 class="card-title"><%= usuario[i].local.name %> <%= usuario[i].local.surname %></h4>
+                                                                    </div>
+                                                                    <div class="card-footer">
+                                                                        <% var prueba= user.local.friends +'' %>
+                                                                        <% var prueba2=prueba.split(",") %>
+                                                                        <% var test = prueba2.includes(usuario[i]._id.toString()) %>
+                                                                        
+                    
+                                                                        <% if(test){%>
+                                                                            <form action="/delete_amigo/<%= usuario[i]._id %>" method="post">
+                                                                                    <button type="button" class="btn btn-danger" onclick="this.form.submit()">Eliminar <i class="fa fa-times"></i></button>
+                                                                            </form>
+                                                                        <% } else {%>
+                                                                            <form action="/solicitud_amigo/<%= usuario[i]._id %>" method="post">
+                                                                                    <button type="button" class="btn btn-primary" onclick="this.form.submit()">Solicitud de amistad <i class="fa fa-plus-square"></i></button>
+                                                                            </form>
+                                                                        <% } %>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        <% } %>
+                                                    <% } %>
+                                                    
+                                                </div>
+                                            </div><!-- /panel body-->
+                                    
+                                        </div><!-- /panel default-->
+                                    </div><!--/col-9-->
+                                
+                                    <!-- col-right -->
+                            
+                                </div><!-- /row -->
+                            </div><!-- /full col-9 -->
+                        </div><!-- /padding -->
+
+                    </div><!-- column col-sm-12 col-xs-11-->
+                </div><!-- row row-offcanvas row-offcanvas-left -->
+            </div><!-- box -->
+        </div> <!-- wrapper -->
+        
+        <!-- script references -->
+        
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        
+    </body>
+</html>
