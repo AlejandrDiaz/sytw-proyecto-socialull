@@ -35,6 +35,11 @@ Para acceder a nuestro perfil podremos hacerlo desde la navbar pulsando sobre nu
 
 En la página de perfil se mostrará nuestro avatar e información personal que se rellenó al registrarse, pudiendo editar estos campos y añadir además el Género, Estado Civil, Grado y Biografía. Además se mostrarán todos los post que hayamos creados, pero no el de nuestros amigos.
 
+
+## Metodología de Trabajo
+
+Para desarrollar la aplicación web se ha trabajado en Cloud9 un entorno de desarrollo que nos permite trabajar en conjunto de forma simultánea editando el código y además nos ofrece una infraestructura para hostear nuestros servicios (mongodb, nodejs). Hemos subido el proyecto a GitHub que es un controlador de versiones de manera que podíamos ir creando issues o pequeñas tareas e ir asignándolas, para así ir trabajando todos de forma comunicativa. El trabajo se ha organizado de manera que todos trabajabamos en todo mientras uno trabajaba en el FrontEnd otro integrante del equipo trabajaba en el BackEnd y viceversa. Se ha utilizado una metodología ágil de trabajo similar al Extreme Programming(XP) adaptándonos cada integrante a las necesidades del proyecto.
+
 ## Tecnologías usadas
 * `bcrypt-nodejs`
 * `body-parser`
