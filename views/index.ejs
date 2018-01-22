@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en-es">
     
     
     <head>
@@ -31,7 +31,7 @@
     
     
     <body>
-        
+        <% var elemento=0 %>
         <div class="wrapper">
             
             <div class="box">
@@ -51,14 +51,14 @@
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                                 </button>
-                                <a href="/" class="navbar-brand logo"><img src="images/U.png" class="iconou"></img></a>
+                                <a href="/inicio" class="navbar-brand logo"><img src="images/U.png" class="iconou"></img></a>
                             </div>
                             
                             <nav class="collapse navbar-collapse" role="navigation">
                                 
-                                <form class="navbar-form navbar-left">
+                                <form class="navbar-form navbar-left" method="POST" action="/buscar" >
                                     <div class="input-group input-group-sm" style="max-width:360px;">
-                                        <input type="text" class="form-control" placeholder="Buscar" name="srch-term" id="srch-term">
+                                        <input type="text" class="form-control" placeholder="Buscar" name="search_data" id="search_data">
                                         <div class="input-group-btn">
                                             <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
                                         </div>
@@ -78,6 +78,9 @@
                                 </ul>
                                 
                                 <ul class="nav navbar-nav navbar-right">
+                                    <li>
+                                        <a href="/perfil"><img class="img-responsive img-rounded" src=""><%= user.local.name %> <%= user.local.surname %></a>
+                                    </li>
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i></a>
                                         <ul class="dropdown-menu">
@@ -105,51 +108,11 @@
                                     
                                     
                                         <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action">Perfil</a>
+                                            <a href="/perfil" class="list-group-item list-group-item-action">Perfil</a>
                                             <a href="/amigos" class="list-group-item list-group-item-action">Amigos</a>
                                             <a href="#" class="list-group-item list-group-item-action">Grupos</a>
                                             <a href="#" class="list-group-item list-group-item-action">Chat</a>
                                         </div>
-                                        <!-- 
-                                        <div class="panel panel-default">
-                                            <div class="panel-thumbnail"><img src="/assets/example/bg_5.jpg" class="img-responsive"></div>
-                                            <div class="panel-body">
-                                                <p class="lead">Urbanization</p>
-                                                <p>45 Followers, 13 Posts</p>
-                                                
-                                                <p>
-                                                    <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px">
-                                                </p>
-                                            </div>
-                                        </div>
-                                        -->
-                                        
-                                        
-                                        <!--
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Bootstrap Examples</h4></div>
-                                            <div class="panel-body">
-                                                <div class="list-group">
-                                                    <a href="http://bootply.com/tagged/modal" class="list-group-item">Modal / Dialog</a>
-                                                    <a href="http://bootply.com/tagged/datetime" class="list-group-item">Datetime Examples</a>
-                                                    <a href="http://bootply.com/tagged/datatable" class="list-group-item">Data Grids</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        -->
-                                        
-                                        
-                                        <!--
-                                        <div class="well"> 
-                                            <form class="form-horizontal" role="form">
-                                                <h4>What's New</h4>
-                                                <div class="form-group" style="padding:14px;">
-                                                    <textarea class="form-control" placeholder="Update your status"></textarea>
-                                                </div>
-                                                <button class="btn btn-primary pull-right" type="button">Post</button><ul class="list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
-                                            </form>
-                                        </div>
-                                        -->
                                         
                                     
                                     </div>
@@ -158,29 +121,82 @@
                                     <div class="col-sm-9">
                                         
                                         
+                                        
                                         <% for(var i = 0; i < post.length; i++) { %>    <!-- post.length cantidad de post del usuario -->
-                                                
+                                            
+                                            <% var nombre_creador = "" %>
+                                            <% var apellido_creador = "" %>
+                                            <% var avatar = "" %>
+                                            
                                             <% if(user.id == post[i].owner) { %> 
-                                                <% var nombre_creador = user.local.name %>
-                                                <% var apellido_creador = user.local.surname %>
+                                                <% nombre_creador = user.local.name %>
+                                                <% apellido_creador = user.local.surname %>
+                                                <% avatar = user.local.avatar %>
+                                            <% } else { %>
+                                                <% for(var j = 0; j < useramigos.length; j++) { %>
+                                                    <% if(useramigos[j].id == post[i].owner) { %>
+                                                        <% nombre_creador = useramigos[j].local.name %>
+                                                        <% apellido_creador = useramigos[j].local.surname %>
+                                                        <% avatar = useramigos[j].local.avatar %>
+                                                    <% } %>
+                                                <% } %>
                                             <% } %>
+                                            
                                             
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
-                                                    <h4 class="nombre">
-                                                        <%= nombre_creador %>
-                                                        <%= apellido_creador %>
-                                                        
-                                                    </h4>
+                                                    
+                                                    <div class="row">
+                                                        <div class="col-sm-10">
+                                                            <div class="col-sm-2">
+                                                                <img class="img-thumbnail" src=<%=avatar%>>
+                                                            </div>
+                                                            <div class="col-sm-10">
+                                                                <h4 class="nombre">
+                                                                    <% if(user.id == post[i].owner){ %>
+                                                                        <a href="/perfil">
+                                                                            <%= nombre_creador %>
+                                                                            <%= apellido_creador %>
+                                                                        </a>
+                                                                    <% } else {%>
+                                                                        <a href="/perfil_amigo/<%= post[i].owner %>">
+                                                                            <%= nombre_creador %>
+                                                                            <%= apellido_creador %>
+                                                                        </a>
+                                                                    <% }%>
+                                                                </h4>
+                                                            </div>
+                                                        </div>
+                                                        <% if(user.id == post[i].owner) { %>
+                                                            <div class="col-sm-2">
+                                                                <ul class="nav navbar-nav navbar-right">
+                                                                    <li class="dropdown">
+                                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></a>
+                                                                        <ul class="dropdown-menu">
+                                                                            <li><a href="">Editar</a></li>
+                                                                            <li><a onclick="guardar_valor(<%= elemento %>,<%= i%>)" href="#deleteModal" role="button" data-toggle="modal">Eliminar</a></li>
+                                                                        </ul>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        <% } %>
+                                                    </div>
                                                 </div>
                                                 
                                                 <div class="panel-body">
-                                                    <!--<p>Disfrutando un poquito de la nieve &#60;3</p>-->
+                                            
                                                     <p><%= post[i].estado %></p>
                                                     
                                                     <% if(post[i].file) { %>
                                                         <div class="panel-thumbnail">
-                                                            <img class="img-responsive" src=<%=post[i].file%>> 
+                                                            
+                                                            <% if(post[i].type == "foto") { %>
+                                                                <img class="img-responsive" src=<%=post[i].file%>> 
+                                                            <% } else { %>
+                                                                <video controls>
+                                                                    <source src="<%=post[i].file%>">
+                                                                </video>
+                                                            <% } %>
                                                         </div>
                                                     <% } %>
                                             
@@ -189,12 +205,31 @@
                                                 <div class="panel-footer">
                                                     <div class="row">
                                                         <div class="col-sm-6 text-left">
-                                                            <button type="button" class="btn btn-primary">Like <i class="fa fa-thumbs-o-up"></i></button>
-                                                            <!--<button type="button" class="btn btn-primary" onclick="give_like()">Like <i class="fa fa-thumbs-o-up"></i></button>-->
+                                                            
+                                                            <% var given_like=0 %>
+                                                            <% if(post[i].user_likes){ %>
+                                                                <% for(var l = 0; l < post[i].user_likes.length; l++) { %>
+                                                                    <% if(user.id == post[i].user_likes[l]) { %>
+                                                                        <button type="button" class="btn btn-success">Ya le has dado Like <i class="fa fa-thumbs-o-up"></i></button>
+                                                                        <% l=post[i].user_likes.length %>
+                                                                        <% given_like = 1 %>
+                                                                    <% } %>
+                                                                <% } %>
+                                                            <% } %>
+                                                            
+                                                            <% if(given_like==0){ %>
+                                                                <form action="/Like/<%= post[i]._id %>" method="post">
+                                                                    <button type="button" class="btn btn-primary" onclick="this.form.submit()">Like <i class="fa fa-thumbs-o-up"></i></button>
+                                                                </form>
+                                                            <% }%>
+                    
                                                         </div>
                                                         <div class="col-sm-6 text-right">
-                                                            <p>85 Like <i class="fa fa-thumbs-o-up"></i></p>
-                                                            <!--<p> %post[i].likes%> <i class="fa fa-thumbs-o-up"></i><p> -->
+                                                            <% if(post[i].likes){ %>
+                                                                <p><%= post[i].likes%> Like <i class="fa fa-thumbs-o-up"></i></p>
+                                                            <% } else {%>
+                                                                <p>0 Like <i class="fa fa-thumbs-o-up"></i></p>
+                                                            <% }%>
                                                         </div>
                                                     </div>
                                     
@@ -203,51 +238,7 @@
                                             </div>
                                         <% } %>
                                         
-                                        <!--
-                                        <div class="well"> 
-                                            <form class="form">
-                                                <h4>Sign-up</h4>
-                                                <div class="input-group text-center">
-                                                    <input type="text" class="form-control input-lg" placeholder="Enter your email address">
-                                                    <span class="input-group-btn"><button class="btn btn-lg btn-primary" type="button">OK</button></span>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Bootply Editor &amp; Code Library</h4></div>
-                                            <div class="panel-body">
-                                                <p><img src="//placehold.it/150x150" class="img-circle pull-right"> <a href="#">The Bootstrap Playground</a></p>
-                                                <div class="clearfix"></div>
-                                                <hr>
-                                                Design, build, test, and prototype using Bootstrap in real-time from your Web browser. Bootply combines the power of hand-coded HTML, CSS and JavaScript with the benefits of responsive design using Bootstrap. Find and showcase Bootstrap-ready snippets in the 100% free Bootply.com code repository.
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Stackoverflow</h4></div>
-                                            <div class="panel-body">
-                                                <img src="//placehold.it/150x150" class="img-circle pull-right"> <a href="#">Keyword: Bootstrap</a>
-                                                <div class="clearfix"></div>
-                                                <hr>
-                                                
-                                                <p>If you're looking for help with Bootstrap code, the <code>twitter-bootstrap</code> tag at <a href="http://stackoverflow.com/questions/tagged/twitter-bootstrap">Stackoverflow</a> is a good place to find answers.</p>
-                                                
-                                                <hr>
-                                                <form>
-                                                    <div class="input-group">
-                                                        <div class="input-group-btn">
-                                                            <button class="btn btn-default">+1</button><button class="btn btn-default"><i class="glyphicon glyphicon-share"></i></button>
-                                                        </div>
-                                                        <input type="text" class="form-control" placeholder="Add a comment..">
-                                                    </div>
-                                                </form>
-                                            
-                                            </div>
-                                        </div>
-                                        
-                                        -->
-                                    
+    
                                     </div>
                                 </div><!--/row-->
                                 
@@ -296,12 +287,6 @@
                                     
                                 </div>
                                 
-                                <!--
-                                <label class="btn btn-default btn-file">
-                                    <i class="fa fa-camera"></i>
-                                    Foto/Video <input type="file" style="display: none;">
-                                </label>
-                                -->
                                 
                                 <button type="submit" class="btn btn-primary btn-sm" aria-hidden="true">Post</button>
                                 
@@ -311,6 +296,83 @@
                 </div>
             </div>
         </div>
+        
+        
+        
+        <!--delete modal-->
+        <div id="deleteModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        Eliminar post
+                    </div>
+
+                        <div class="modal-body">
+                                
+                            <p>¿Estás seguro que desea eliminar el post?</p>
+
+                        </div>
+                        <div class="modal-footer">
+                            <% if(post[elemento]) { %>
+                                <a type="button" href="/delete_post/<%= post[elemento]._id %>" class="btn btn-danger">Eliminar</a>
+                            <% } %>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <!-- MODAL UPDATE POST
+        
+        <div id="updateModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        Actualizar estado
+                    </div>
+                    
+                    <form class="form center-block" method="POST" action="/update_post/%= post[elemento]._id %>" enctype="multipart/form-data">
+                        <div class="modal-body">
+                                
+                            <div class="form-group">
+                                <textarea type="text" class="form-control input-lg" name="estado" id="estado" value="%= post[elemento].estado %>"></textarea>
+                            </div>
+                                
+                            
+                        </div>
+                        <div class="modal-footer">
+                            
+                            <div class="row justify-content-between">
+                                
+                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                    <span class="btn btn-default btn-file">
+                                        <span>
+                                            <i class="fa fa-camera"></i>
+                                            Foto/Video
+                                        </span>
+                                        <input type="file" name="file" value="%= post[elemento].file %>" accept="video/*,  video/x-m4v, video/webm, video/x-ms-wmv, video/x-msvideo, video/3gpp, video/flv, video/x-flv, video/mp4, video/quicktime, video/mpeg, video/ogv, .ts, .mkv, image/*"/>
+                                    </span>
+                                    <span class="fileinput-filename"></span>
+                                    
+                                </div>
+                                
+                                
+                                <button type="submit" class="btn btn-primary btn-sm" aria-hidden="true">Actualizar</button>
+                                
+                            </div>  	
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        
+        -->
+        
+        
+        
         <!-- script references -->
         
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
@@ -319,7 +381,11 @@
         <!-- Latest compiled and minified JavaScript -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
         
-        <script src="js/scripts.js"></script>   <!-- no existe? -->
+        <script>
+            function guardar_valor(elemento,n){
+                elemento=n;
+            }
+        </script>
         
     </body>
 </html>
