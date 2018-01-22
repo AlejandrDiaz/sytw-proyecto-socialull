@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en-es">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Editar</title>
+
+    <!--  CSS de Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="images/U.ico"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   
+
+    <!-- Referencia a otro archivo css propio, donde se realizan las modificaciones css de los componentes y elementos -->
+    <link href="css/perfil.css" rel="stylesheet">
+    <!-- Referencia a otro archivo css propio, donde se realizan las modificaciones css de la página principal -->
+    <!--<link href="../public/css/starter-template.css" rel="stylesheet">-->
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
+    
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="column col-sm-12 col-xs-11">
+
+        <!-- Se configura el menú superior-->
+            <div class="navbar navbar-blue navbar-static-top">  
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="/inicio" class="navbar-brand logo"><img src="images/U.png" class="iconou"></img></a>
+                </div>
+                            
+                <nav class="collapse navbar-collapse" role="navigation">
+                    
+                    <form class="navbar-form navbar-left" method="POST" action="/buscar" >
+                        <div class="input-group input-group-sm" style="max-width:360px;">
+                            <input type="text" class="form-control" placeholder="Buscar" name="search_data" id="search_data">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="/inicio"><i class="fa fa-home"></i> Inicio</a>
+                        </li>
+                        <li>
+                            <a href="#"> <i class="fa fa-comments"></i> Chat </a>
+                        </li>
+                    </ul>
+                    
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="">Ajustes</a></li>
+                                <li><a href="">Acerca</a></li>
+                                <li><a href="/logout">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                </nav>
+                            
+            </div>
+                    
+
+            <!-- Contact Form -->
+            <!-- Campos del formulario de contacto con validación de campos-->
+            <div class="row" id="content">
+                <!-- Columna de la izquierda -->
+            	<div class="col-md-4">
+            		<div class="col-md-12" align="center">
+            		    <% if(user.local.avatar) { %>
+            			    <img class="img-responsive img-portfolio img-hover" src="<%= user.local.avatar %>">
+            			<% } else { %> 
+            			    <img class="img-responsive img-portfolio img-hover" src="images/avatar.png">
+            			<% }%>
+            		</div>
+            		<div class="col-md-12 row">
+            		    <form method="POST" action="/foto_perfil" enctype="multipart/form-data">
+                		    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <span class="btn btn-default btn-file">
+                                    <span>
+                                        <i class="fa fa-camera"></i>
+                                        Subir Foto
+                                    </span>
+                                    <input type="file" name="file" onchange="this.form.submit()" accept="image/*"/>
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                        
+                            </div>
+                        </form>
+                       
+        		    </div>
+        	
+
+            		<div class="col-md-12">
+            		<!-- Barra vertical de opciones del perfil de usuairo -->
+            			<br >
+            			<ul class="list-group list-primary">
+            				<a href="#" class="list-group-item">
+            				    <span class="glyphicon glyphicon-camera"></span>
+            				    Galeria
+            				</a>
+            				<a href="/perfil" class="list-group-item">Atras</a>
+        				</ul>
+        			</div>
+                <!-- Fin Barra vertical de opciones del perfil de usuario -->
+        	    </div>
+                <!-- Fin de Columna de la izquierda -->
+
+                <!-- Parte central -->
+                <div class="col-md-8">
+                    <div class="col-md-12 forms">
+                        <h3 style="text-align: center">Mi perfil <p><small>Añade información personal para compartir tu perfil</small></p></h3>
+                    </div>
+                    <!-- Se inicia el form (ojo todos los elementos de formulario deben ir dentro de esta etiqueta-->
+                    <form name="modifyProfile" id="profileForm" novalidate method="post" action="/editarp">
+                    <!-- Inicio del div central parte de formulario información básica -->
+                    	<div class="col-md-8 col-md-offset-2">
+        	                
+                            <div class="form-group center-justify">
+    	                        <form class="form-horizontal" name="editar" onsubmit="return validar_clave()" action="/editarp" method="post">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="name" class="col-md-3 control-label">Nombre</label>
+                                        <div class="col-md-9">
+                                            <input required type="text" class="form-control" name="name" id="name" value="<%= user.local.name %>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="surname" class="col-md-3 control-label">Apellidos</label>
+                                        <div class="col-md-9">
+                                            <input required type="text" class="form-control" name="surname" id="surname" value="<%= user.local.surname %>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="edad" class="col-md-3 control-label">Edad</label>
+                                        <div class="col-md-9">
+                                            <input required type="number" class="form-control" name="edad" id="edad" value="<%= user.local.edad %>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="form-check">
+                                        <br>
+                                        <span>Genero</span>
+                                        <input class="form-check-input" type="radio" name="genero" id="genero" value="Hombre">
+                                        <label class="form-check-label" for="genero">
+                                            Hombre
+                                        </label>
+                                        
+                                        <input class="form-check-input" type="radio" name="genero" id="genero" value="Mujer">
+                                        <label class="form-check-label" for="genero">
+                                            Mujer
+                                        </label>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="estadociv" class="col-md-3 control-label">Estado Civil</label>
+                                        <div class="col-md-9">
+                                            <input required type="text" class="form-control" name="estadociv" id="estadoc" value="<%= user.local.estadociv%>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="estadociv" class="col-md-3 control-label">Grado</label>
+                                        <div class="col-md-9">
+                                            <input required type="text" class="form-control" name="facultadinfo" id="facultadinfo" value="<%= user.local.grado%>">
+                                        </div>
+                                    </div>
+                                </div>
+                                    
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Biografia</span>
+                                            </div>
+                                            <textarea class="form-control" name="biografia" value="<%= user.local.biografia%>" aria-label="Biografia"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    <div class="col-md-8" align="center">
+                    
+		               	<button type="button" id="btnClean" class="btn btn-warning">Limpiar</button>
+		              	<button type="submit" id="btnEnviar" class="btn btn-primary">Actualizar</button>
+		              	<button type="button" id="btnCancel" class="btn btn-danger">Cancelar</button>
+		              	<button type="submit" class="btn btn-info" value="Submit">Editar</button>
+                    </div>
+                </div>
+                <br>
+    	                
+                        &nbsp;
+            </div>
+                <!-- Fin Parte central - enlaces -->
+                                </form>
+            <!-- Fin del form -->
+        </div>  
+
+        <!-- Fin Campos del formulario de contacto con validación de campos -->
+        &nbsp;
+        <hr>
+    </div>
+    <!-- /.container -->
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+        
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+    <!-- Librería jQuery requerida por los plugins de JavaScript -->
+    <script src="http://code.jquery.com/jquery.js"></script>
+
+    <!-- Librería jQuery personalizada-->
+    <script src="js/jquery-example.js"></script>
+    
+</body>
+
+</html>
