@@ -2,6 +2,7 @@
 
 ## Descripción
 SocialULL pretende ser una red social enfocada a los estudiantes de la Universidad de La Laguna, con la que conocer y acercarse más a los demás estudiantes de la ULL.
+
 ## Usar la app
 ```bash
     git clone https://github.com/AlejandrDiaz/sytw-proyecto-socialull.git socialull
@@ -11,6 +12,29 @@ SocialULL pretende ser una red social enfocada a los estudiantes de la Universid
     ./mongo &
     node serve.js
 ```
+
+## Guía de uso
+Para acceder a la plataforma primero habrá que loguearse, o crear una nueva cuenta en caso de no tener una, rellenando los campos Nombre, Apellidos, Edad, Email y Contraseña, la cual requiere confirmación, más de 6 caracteres y que no contenga espacios en blanco.
+
+<img src="https://i.gyazo.com/29b6a61a754a040c7029ae6f5e6a42e6.png" width="50%"> <img src="https://i.gyazo.com/a3b60bcdc20d086c2f1d13e124471898.png" width="50%">
+
+Una vez logueados, accederemos a la pestaña principal en la que aparecen los post creados por uno mismo o por los amigos que uno siga. Los post pueden contener texto y/o una imagen, un video o un gif. Para crear un nuevo post basta con pulsar en la navbar el elemento post que abrirá un modal con el formulario para crearlo. Además una vez creados, se pueden eliminar los post, pero solo los propios.
+
+<img src="https://i.gyazo.com/88f255e06d062c4df0cdb37181368804.png" width="50%"> 
+<img src="https://i.gyazo.com/af64db5feee6e79926b54ea6ee4ea1e8.png" width="50%">
+
+Desde inicio podremos acceder a la vista de amigos en la que aparecerá la lista de usuarios que uno haya seguido, pudiendo dejar de seguirlos.
+
+También desde la barra de búsqueda de la navbar podremos buscar nuevos amigos por el nombre o apellidos, que nos redireccionará a una nueva vista que nos muestra los resultados de la búsqueda, pudiendo añadirlos a amigos.
+
+<img src="https://i.gyazo.com/a6475fbd7f93f7dd8367c9fd82891620.png" width="50%">
+
+Para acceder a nuestro perfil podremos hacerlo desde la navbar pulsando sobre nuestro nombre y apellidos que aparecen a la derecha, pulsando sobre la lista de navegración que pone Perfil o por último pulsando sobre el nombre del usuario del post, que también nos serviría para ir al perfil de algún amigo que sigamos.
+
+<img src="https://i.gyazo.com/2a21378d8ae65b42aeb5f8d1508fb04d.png" width="50%">
+
+En la página de perfil se mostrará nuestro avatar e información personal que se rellenó al registrarse, pudiendo editar estos campos y añadir además el Género, Estado Civil, Grado y Biografía. Además se mostrarán todos los post que hayamos creados, pero no el de nuestros amigos.
+
 ## Tecnologías usadas
 * `bcrypt-nodejs`
 * `body-parser`
@@ -22,7 +46,7 @@ SocialULL pretende ser una red social enfocada a los estudiantes de la Universid
 * `ejs`
 * `express`
 * `express-session`
-* `ejs`
+* `fs`
 * `mongoose`
 * `morgan`
 * `multer`
@@ -30,6 +54,7 @@ SocialULL pretende ser una red social enfocada a los estudiantes de la Universid
 * `passport-local`
 * `passport-local-mongoose`
 * `path`
+
 ## Autores
 
 - [Alejandro Díaz Cueca](https://github.com/AlejandrDiaz)
